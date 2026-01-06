@@ -1,150 +1,150 @@
-!DOCTYPE html
-html lang=pt-BR
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titlePagamento via Pix - SEItitle
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento via Pix - SEI</title>
 
-    style
-         {
-            box-sizing border-box;
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family Arial, Helvetica, sans-serif;
-            background #f2f4f8;
-            margin 0;
-            padding 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f4f8;
+            margin: 0;
+            padding: 15px;
         }
 
         .container {
-            background #ffffff;
-            padding 20px;
-            border-radius 16px;
-            box-shadow 0 8px 20px rgba(0,0,0,0.1);
-            max-width 420px;
-            margin auto;
-            text-align center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 420px;
+            margin: auto;
+            text-align: center;
         }
 
         .logo {
-            width 100%;
-            max-width 260px;
-            margin 0 auto 15px;
-            display block;
+            width: 100%;
+            max-width: 260px;
+            margin: 0 auto 15px;
+            display: block;
         }
 
         h1 {
-            color #5f8f83;
-            font-size 20px;
-            margin-bottom 8px;
+            color: #5f8f83;
+            font-size: 20px;
+            margin-bottom: 8px;
         }
 
         p {
-            color #555;
-            font-size 14px;
-            margin-bottom 12px;
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 12px;
         }
 
         textarea {
-            width 100%;
-            min-height 120px;
-            padding 10px;
-            font-size 13px;
-            border-radius 10px;
-            border 1px solid #ccc;
-            resize none;
+            width: 100%;
+            min-height: 120px;
+            padding: 10px;
+            font-size: 13px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            resize: none;
         }
 
         button {
-            margin-top 12px;
-            background #5f8f83;
-            color #fff;
-            border none;
-            padding 14px;
-            border-radius 12px;
-            font-size 16px;
-            font-weight bold;
-            cursor pointer;
-            width 100%;
+            margin-top: 12px;
+            background: #5f8f83;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
         }
 
-        buttonactive {
-            transform scale(0.98);
+        button:active {
+            transform: scale(0.98);
         }
 
         .msg {
-            margin-top 10px;
-            color #2e7d32;
-            font-weight bold;
-            display none;
-            font-size 14px;
+            margin-top: 10px;
+            color: #2e7d32;
+            font-weight: bold;
+            display: none;
+            font-size: 14px;
         }
 
         .qrcode {
-            margin-top 20px;
+            margin-top: 20px;
         }
 
         .qrcode img {
-            width 100%;
-            max-width 240px;
+            width: 100%;
+            max-width: 240px;
         }
 
-         Ajustes extras para telas muito pequenas 
-        @media (max-width 360px) {
+        /* Ajustes extras para telas muito pequenas */
+        @media (max-width: 360px) {
             h1 {
-                font-size 18px;
+                font-size: 18px;
             }
 
             textarea {
-                font-size 12px;
+                font-size: 12px;
             }
         }
-    style
-head
-body
+    </style>
+</head>
+<body>
 
-div class=container
+<div class="container">
 
-    !-- LOGO --
-    img src=Logo SEI - Saúde e Educação Integrada - 2022.png
-         alt=SEI - Saúde e Educação Integrada
-         class=logo
+    <!-- LOGO -->
+    <img src="Logo SEI - Saúde e Educação Integrada - 2022.png"
+         alt="SEI - Saúde e Educação Integrada"
+         class="logo">
 
-    h1Pagamento via Pixh1
-    pCopie o código ou escaneie o QR Codep
+    <h1>Pagamento via Pix</h1>
+    <p>Copie o código ou escaneie o QR Code</p>
 
-    !-- PIX COPIA E COLA --
-    textarea id=pixKey readonly
+    <!-- PIX COPIA E COLA -->
+    <textarea id="pixKey" readonly>
 00020126330014BR.GOV.BCB.PIX0111218960138055204000053039865802BR5922Rita de Cassia Bucioli6014S JOAQUIM DA B62140510CLINICASEI63040739
-    textarea
+    </textarea>
 
-    button onclick=copiarPix()📋 Copiar Pixbutton
+    <button onclick="copiarPix()">📋 Copiar Pix</button>
 
-    div class=msg id=mensagemPix copiado com sucesso!div
+    <div class="msg" id="mensagem">Pix copiado com sucesso!</div>
 
-    !-- QR CODE --
-    div class=qrcode
-        img src=qrcode-pix.png alt=QR Code Pix
-    div
+    <!-- QR CODE -->
+    <div class="qrcode">
+        <img src="qrcode-pix.png" alt="QR Code Pix">
+    </div>
 
-div
+</div>
 
-script
+<script>
     function copiarPix() {
-        const pix = document.getElementById(pixKey);
+        const pix = document.getElementById("pixKey");
         pix.select();
         pix.setSelectionRange(0, 99999);
-        document.execCommand(copy);
+        document.execCommand("copy");
 
-        const msg = document.getElementById(mensagem);
-        msg.style.display = block;
+        const msg = document.getElementById("mensagem");
+        msg.style.display = "block";
 
-        setTimeout(() = {
-            msg.style.display = none;
+        setTimeout(() => {
+            msg.style.display = "none";
         }, 2000);
     }
-script
+</script>
 
-body
-html
+</body>
+</html>
