@@ -46,16 +46,6 @@
             margin-bottom: 12px;
         }
 
-        textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 10px;
-            font-size: 13px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            resize: none;
-        }
-
         button {
             margin-top: 12px;
             background: #5f8f83;
@@ -89,17 +79,6 @@
             width: 100%;
             max-width: 240px;
         }
-
-        /* Ajustes extras para telas muito pequenas */
-        @media (max-width: 360px) {
-            h1 {
-                font-size: 18px;
-            }
-
-            textarea {
-                font-size: 12px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -112,13 +91,9 @@
          class="logo">
 
     <h1>Pagamento via Pix</h1>
-    <p>Copie o código ou escaneie o QR Code</p>
+    <p>Copie o Pix ou escaneie o QR Code</p>
 
-    <!-- PIX COPIA E COLA -->
-    <textarea id="pixKey" readonly>
-00020126330014BR.GOV.BCB.PIX0111218960138055204000053039865802BR5922Rita de Cassia Bucioli6014S JOAQUIM DA B62140510CLINICASEI63040739
-    </textarea>
-
+    <!-- BOTÃO COPIAR PIX -->
     <button onclick="copiarPix()">📋 Copiar Pix</button>
 
     <div class="msg" id="mensagem">Pix copiado com sucesso!</div>
@@ -132,17 +107,16 @@
 
 <script>
     function copiarPix() {
-        const pix = document.getElementById("pixKey");
-        pix.select();
-        pix.setSelectionRange(0, 99999);
-        document.execCommand("copy");
+        const pixKey = `00020126330014BR.GOV.BCB.PIX0111218960138055204000053039865802BR5922Rita de Cassia Bucioli6014S JOAQUIM DA B62140510CLINICASEI63040739`;
 
-        const msg = document.getElementById("mensagem");
-        msg.style.display = "block";
+        navigator.clipboard.writeText(pixKey).then(() => {
+            const msg = document.getElementById("mensagem");
+            msg.style.display = "block";
 
-        setTimeout(() => {
-            msg.style.display = "none";
-        }, 2000);
+            setTimeout(() => {
+                msg.style.display = "none";
+            }, 2000);
+        });
     }
 </script>
 
